@@ -5,12 +5,16 @@ package com.mathoperation;
 @FunctionalInterface
 interface IMathFunction{
     int calculate(int a, int b);
+    static void printMathOperationResult(int a,int b,String function, IMathFunction fObj){
+        System.out.println("Result of math operation "+ function + " is: " +
+                ""+ fObj.calculate(a,b));
+    }
 }
 
 public class MathOperationApp {
     public static void main(String[] args) {
 
-        //Lambda expression for math operations for two parameters
+        //UC1.1  - Lambda expression for math operations for two parameters
         //It implements IMathFunction interface
         IMathFunction add = (a,b) -> a + b;
         IMathFunction subtract = (a,b) -> a - b;
@@ -24,5 +28,12 @@ public class MathOperationApp {
         System.out.println("Subtraction is "+ subtract.calculate(5,3));
         System.out.println("Multiplication is "+ multiply.calculate(3,9));
         System.out.println("Division is "+ divide.calculate(9,3));
+
+        // UC1.2 -  Math operations using lambda function
+        //Passing lambda expression as function parameter to print result using static function
+        IMathFunction.printMathOperationResult(16,23,"addition",add);
+        IMathFunction.printMathOperationResult(24,15,"subtraction",subtract);
+        IMathFunction.printMathOperationResult(7,5,"multiplication",multiply);
+        IMathFunction.printMathOperationResult(6,3,"division",divide);
     }
 }
